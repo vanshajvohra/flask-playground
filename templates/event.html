@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Enter Event Details</h1><br>
+    <form method="post">
+        {{ form.eventName.label(class="form-label") }}
+        {{ form.eventName(class="form-control") }}
+        <br>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock %}
