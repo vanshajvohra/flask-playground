@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -28,9 +28,12 @@ class eventForm(FlaskForm):
 def event():
     eventName = None
     form = eventForm()
-    if form.validate_on_submit(): 
+    if form.validate_on_submit():
+        
+        flash("Event Added Successfully") # we are validating the form gets submitted here
         eventName = form.eventName.data
         form.eventName.data = ''
+    
     return render_template('event.html',
                            eventName = eventName,
                            form = form)
