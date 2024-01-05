@@ -2,11 +2,32 @@ from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 # Basic Flask Instance
 app = Flask(__name__)
+
+# DB
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
 app.config['SECRET_KEY'] = 'key'
+
+# Initializing the DB
+db = SQLAlchemy(app)
+
+# DB Model
+class Users(db.Model):
+    id =  db.Column()
+
+# Event Post Model
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    details = db.Column(db.Text)
+    location = db.Column(db.String(255))
+
 
 # Route Decorator - used to redirect to a webpage
 @app.route('/')
