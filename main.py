@@ -18,8 +18,6 @@ app.config['SECRET_KEY'] = 'key'
 db = SQLAlchemy(app)
 
 # DB Model
-class Users(db.Model):
-    id =  db.Column()
 
 # Event Post Model
 class Posts(db.Model):
@@ -27,6 +25,9 @@ class Posts(db.Model):
     title = db.Column(db.String(255))
     details = db.Column(db.Text)
     location = db.Column(db.String(255))
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+    slug = db.Column(db.String(255))
+    
 
 
 # Route Decorator - used to redirect to a webpage
